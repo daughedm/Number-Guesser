@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
@@ -13,32 +13,40 @@
       <div class="circle-two"></div>
       <div class="circle-three"></div>
     </div>
+
     <header>
       <h1>Number <span class="h1-light">Guesser</span></h1>
     </header>
+
     <section>
-    <form>
-      <fieldset>
-        <input class="inputbox" type="number" id="guess-field" placeholder="Enter your guess" name="guesses"/>
-        <div class="clearfix">
-          <input class="button-small" id="guess-submit" type="submit" value="Guess" for="guesses"
-            disabled/>
-          <input id="clear-textfield" class="button-small right-button" type="button" value="Clear"
-            disabled/>
-        </div>
-      </fieldset>
-    </form>
+
+      <form>
+        <fieldset>
+          <input class="inputbox" type="number" id="guess-field" placeholder="Enter your guess" name="guesses"/>
+
+          <div class="clearfix">
+            <input class="button-small" id="guess-submit" type="submit" for="guesses" disabled></input>
+            <input id="clear-textfield" class="button-small right-button" type="button" value="Clear"
+              disabled/>
+          </div>
+
+        </fieldset>
+      </form>
+
       <output>
         <h3 class="paras" id="previous-guess">Pick a number 1 - 100</h3>
         <h2 class="paras" id='last-result'>?</h2>
-        <h3 class="paras no-margin" id="high-low" > </h3>
-        <h3 id="number-of-guesses" class="guess-count"><h3>
+        <h3 class="paras no-margin" id="high-low"></h3>
+        <h3 id="number-of-guesses" class="guess-count">10 Guesses Left<h3>
       </output>
+
       <fieldset>
         <input class="button-reset" type="button" id="reset" value="Reset" />
         <br/>
       </fieldset>
+
     </section>
   </div>
   <script src="script.js"></script>
 </body>
+</html>

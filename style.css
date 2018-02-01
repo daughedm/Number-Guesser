@@ -80,6 +80,11 @@ h2 {
   line-height: 250px;
 }
 
+.game-over {
+  font-size: 150px;
+  font-weight: 300;
+}
+
 .smaller-font {
   font-size: 150px;
   line-height: 250px;

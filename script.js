@@ -9,8 +9,16 @@ var guessCount = 1;
 var resetButton = document.querySelector('#reset');
 var numberOfGuesses = document.querySelector('#number-of-guesses');
 
+guessSubmit.addEventListener('click', checkGuess);
+clearButton.addEventListener('click', clearField);
+resetButton.addEventListener('click', resetGame);
+guessField.addEventListener("keyup", enableDisableClearBtn);
+guessField.addEventListener("keyup", enableDisableGuessBtn);
+guessField.addEventListener("keyup", minMaxValidation);
+resetButton.addEventListener('click', resetGame);
+
 function checkGuess() {
-  var userGuess = Number(guessField.value);
+  var userGuess = parseInt(guessField.value);
   guessField.value = '';
 
   if (guessCount === 1) {
@@ -22,15 +30,20 @@ function checkGuess() {
     lastResult.textContent = 'BOOM!';
     highLow.textContent = 'You are right!';
     setGameOver();
+
   } else if (guessCount === 10) {
     previousGuess.textContent = '';
+    gameOverSizeAdd();
     lastResult.textContent = 'GAME OVER';
     highLow.textContent = 'You are out of guesses';
     setGameOver();
+
   } else {
     lastResult.textContent = userGuess;
+
     if (userGuess < randomNumber) {
       highLow.textContent = 'That is too low!';
+
     } else if (userGuess > randomNumber) {
       highLow.textContent = 'That is too high!';
     }
@@ -49,26 +62,20 @@ function clearField() {
   enableDisableClearBtn();
 }
 
-guessSubmit.addEventListener('click', checkGuess);
-clearButton.addEventListener('click', clearField);
-resetButton.addEventListener('click', resetGame);
-guessField.addEventListener("keyup", enableDisableClearBtn);
-guessField.addEventListener("keyup", enableDisableGuessBtn);
-guessField.addEventListener("keyup", minMaxValidation);
-
 function setGameOver() {
   guessField.disabled = true;
   guessSubmit.disabled = true;
   resetButton = document.querySelector('#reset');
-  resetButton.addEventListener('click', resetGame);
 }
 
 function resetGame() {
   guessCount = 0;
+  numberOfGuesses.textContent = 10 - guessCount + ' Guesses Left';
   var resetParas = document.querySelectorAll('.paras');
   resetParas[0].textContent = 'Pick a number 1 - 100';
   resetParas[1].textContent = '?';
   resetParas[2].textContent = '';
+  gameOverSizeRemove();
   resetButton.disabled = true;
   guessField.disabled = false;
   guessSubmit.disabled = true;
@@ -110,4 +117,12 @@ function minMaxValidation() {
     resetParas[0].textContent = 'THAT IS NOT 0 - 100!';
     guessField.value = '';
   }
+}
+
+function gameOverSizeRemove () {
+  lastResult.classList.remove('game-over');
+}
+
+function gameOverSizeAdd () {
+  lastResult.classList.add('game-over');
 }
