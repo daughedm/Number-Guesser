@@ -17,19 +17,22 @@
       <h1>Number <span class="h1-light">Guesser</span></h1>
     </header>
     <section>
+    <form>
       <fieldset>
-        <input class="inputbox" type="number" id="guess-field" placeholder="Enter your guess"/>
+        <input class="inputbox" type="number" id="guess-field" placeholder="Enter your guess" name="guesses"/>
         <div class="clearfix">
-          <input class="button-small" id="guess-submit" type="button" value="Guess" for="guesses"
+          <input class="button-small" id="guess-submit" type="submit" value="Guess" for="guesses"
             disabled/>
-          <input id="clear-textfield" class="button-small right-button" type="submit" value="Clear"
+          <input id="clear-textfield" class="button-small right-button" type="button" value="Clear"
             disabled/>
         </div>
       </fieldset>
+    </form>
       <output>
         <h3 class="paras" id="previous-guess">Pick a number 1 - 100</h3>
         <h2 class="paras" id='last-result'>?</h2>
         <h3 class="paras no-margin" id="high-low" > </h3>
+        <h3 id="number-of-guesses" class="guess-count"><h3>
       </output>
       <fieldset>
         <input class="button-reset" type="button" id="reset" value="Reset" />

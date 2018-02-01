@@ -7,15 +7,11 @@ var guessField = document.querySelector('#guess-field');
 var clearButton = document.querySelector('#clear-textfield');
 var guessCount = 1;
 var resetButton = document.querySelector('#reset');
-
+var numberOfGuesses = document.querySelector('#number-of-guesses');
 
 function checkGuess() {
-
   var userGuess = Number(guessField.value);
-
-  enableDisableClearBtn();
-  enableDisableGuessBtn();
-  enableDisableResetBtn();
+  guessField.value = '';
 
   if (guessCount === 1) {
     previousGuess.textContent = 'Your last guess was';
@@ -39,14 +35,18 @@ function checkGuess() {
       highLow.textContent = 'That is too high!';
     }
   }
-
+  
+  numberOfGuesses.textContent = 10 - guessCount + ' Guesses Left';
   guessCount++;
-  guessField.value = '';
+  enableDisableGuessBtn();
+  enableDisableClearBtn();
+  enableDisableResetBtn();
   resetButton.disable = false;
 }
 
 function clearField() {
   guessField.value = '';
+  enableDisableClearBtn();
 }
 
 guessSubmit.addEventListener('click', checkGuess);
@@ -54,7 +54,7 @@ clearButton.addEventListener('click', clearField);
 resetButton.addEventListener('click', resetGame);
 guessField.addEventListener("keyup", enableDisableClearBtn);
 guessField.addEventListener("keyup", enableDisableGuessBtn);
-guessField.addEventListener("blur", minMaxValidation);
+guessField.addEventListener("keyup", minMaxValidation);
 
 function setGameOver() {
   guessField.disabled = true;
@@ -80,18 +80,19 @@ function resetGame() {
 }
 
 function enableDisableClearBtn() {
-  if (guessField.value.length < 0) {
-    clearButton.disabled = true;
-  } else {
+  if (guessField.value) {
     clearButton.disabled = false;
+    
+  } else {
+    clearButton.disabled = true;
   }
 }
 
 function enableDisableGuessBtn() {
-  if (guessField.value.length < 0) {
-    guessSubmit.disabled = true;
-  } else {
+  if (guessField.value) {
     guessSubmit.disabled = false;
+  } else {
+    guessSubmit.disabled = true;
   }
 }
 
@@ -104,8 +105,9 @@ function enableDisableResetBtn() {
 }
 
 function minMaxValidation() {
+  var resetParas = document.querySelectorAll('.paras');
   if (guessField.value > 100 || guessField.value < 0) {
-    alert('That is not beween 0 - 100');
-    guessField.value = ''
+    resetParas[0].textContent = 'THAT IS NOT 0 - 100!';
+    guessField.value = '';
   }
 }
